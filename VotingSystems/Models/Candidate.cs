@@ -9,11 +9,23 @@ namespace VotingSystems.Models
     class Candidate
     {
         //This represents the candidates position on an issue.
-        int policy;
+        public int policy;
+        public int votes;
         
         public Candidate(int policy)
         {
             this.policy = policy;
+            votes = 0;
+        }
+
+        public void CastVote()
+        {
+            votes++;
+        }
+
+        public void ResetVotes()
+        {
+            votes = 0;
         }
     }
 }

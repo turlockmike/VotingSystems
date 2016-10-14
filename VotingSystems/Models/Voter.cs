@@ -21,9 +21,19 @@ namespace VotingSystems.Models
             this.strategic = strategic;
         }
 
+        public Candidate Choose(Candidate[] candidates)
+        {
+            Candidate current = candidates[0];
 
+            for (int i = 1; i < candidates.Length; i++)
+            {
+                if (Math.Abs(preference - candidates[i].policy) < Math.Abs(preference - current.policy))
+                {
+                    current = candidates[i];
+                }
+            }
 
-
-
+            return current;
+        }
     }
 }

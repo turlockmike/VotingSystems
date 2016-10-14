@@ -12,12 +12,13 @@ namespace VotingSystems.Models
         public List<Voter> voters;
 
         //Creates a new pool of voters. The size and strategic being from 0 - 1 on the % of strategic
-        public VoterPool(ISample sample, int size, float strategic)
+        public VoterPool(ISample sample, int size, double strategic)
         {
+            voters = new List<Voter>();
             for(int i = 0; i < size; i++)
             {
-                int preference = (int)Math.Round((sample.Generate() - 0.5) * 2.0 * PREFERENCE_RANGE);
-                bool isStrategic = (float)(i + 1) / size <= strategic;
+                int preference = (int)Math.Round((sample.Generate()) * PREFERENCE_RANGE);
+                bool isStrategic = (double)(i + 1) / size <= strategic;
                 var voter = new Voter(preference , isStrategic);
                 voters.Add(voter);
             }
